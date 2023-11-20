@@ -3,7 +3,13 @@
 ## How to programmatically Request data from the update_expense microservice
 
 example call:
-```
+```python
+    import zmq
+    
+    context = zmq.Context()
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5555")
+    
     # Subtracting $50 from $300
     current_expense = 300
     amount_to_subtract = 50
