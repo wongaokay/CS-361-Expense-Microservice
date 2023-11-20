@@ -1,6 +1,5 @@
 import zmq
 
-
 def update_expense(cat_to_update, amount_to_subtract):
     """Both request and receives microservice"""
     context = zmq.Context()
