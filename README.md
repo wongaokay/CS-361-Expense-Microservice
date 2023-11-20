@@ -1,8 +1,7 @@
 # CS-361-Expense-Microservice
 
-### Example
+### Example: Let's say this was the current category_dict. How would you subtract $50 from Groceries?
 ```python
-# Let's say this was the current category_dict. How would you subtract $50 from Groceries?
 category_dict = {'Groceries': 195}
 ```
 
