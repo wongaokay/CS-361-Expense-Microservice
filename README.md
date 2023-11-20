@@ -1,11 +1,16 @@
 # CS-361-Expense-Microservice
 
+## Note
+This microservice uses ZeroMQ for the communication pipeline. You need to install and import the python package `zmq`.
+
 ## Example Dictionary
 ```python
 category_dict = {'Groceries': 195, 'Rent': 1200}
 ```
 
 ## Both Requesting and Receiving data in a single function
+This function is an example of requesting and receiving data from the microservice. In the main program, another function will prompt the user what category they want to update (cat_to_update) and how much $ they want to subtract from the category (amount_to_subtract). For example, If the user wants to subtract $100 from Rent. Then the main program will call update_expense("Rent", 100). The microservice calculates and returns the updated expense, and the rest of the update_expense function updates the category in the dictionary.
+
 ```python
 import zmq
 
