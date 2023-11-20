@@ -38,6 +38,7 @@ example call:
 update_expense("Rent", 100)
 ```
 
+## Further explanations
 ### How to programmatically Request data from the update_expense microservice
 example call:
 ```python
