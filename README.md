@@ -3,7 +3,7 @@
 ## Note
 This microservice uses ZeroMQ for the communication pipeline. You need to install and import the python package `zmq`.
 
-## Example Dictionary
+## Dictionary for the following examples
 ```python
 category_dict = {'Groceries': 195, 'Rent': 1200}
 ```
