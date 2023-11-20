@@ -2,11 +2,10 @@
 
 ## Example: Let's say this was the current category_dict. How would you subtract $50 from Groceries?
 ```python
-category_dict = {'Groceries': 195}
+category_dict = {'Groceries': 195, 'Rent': 1200}
 ```
 
-## How to programmatically Request data from the update_expense microservice
-
+### How to programmatically Request data from the update_expense microservice
 example call:
 ```python
     import zmq
@@ -25,9 +24,7 @@ example call:
         socket.send_json(data)
 ```
 
-## How to programmatically Receive data from the update_expense microservice
-
-example call:
+### How to programmatically Receive data from the update_expense microservice
 ```python
     ... continuation of request ...
 
@@ -38,3 +35,37 @@ example call:
     # Now, update groceries category with the new value
     category_dict["Groceries"] = updated_expense
 ```
+
+## Both Requesting and Receiving data in a single function
+```python
+import zmq
+
+def update_expense(cat_to_update, amount_to_subtract):
+    context = zmq.Context()
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5555")
+
+    # Request Microservice
+    # Assign current_expense to variable given cat_to_update
+    current_expense = category_dict[cat_to_update]
+
+    socket.send_string("User requesting to update category")
+    if socket.recv_string() == "REQUEST_DATA":
+        data = {"current_expense": current_expense, "amount_to_subtract": amount_to_subtract}
+        socket.send_json(data)
+
+    # Receive Microservice
+    updated_expense = int(socket.recv_string())
+
+    # Update dictionary
+    category_dict[cat_to_update] = updated_expense
+
+    print(f"Subtracted ${amount_to_subtract} from {current_expense}")
+    print(f"{cat_to_update}: {category_dict[cat_to_update]}")
+```
+example call:
+```
+# Subtracts $100 from Rent, and updates category_dict
+update_expense("Rent", 100)
+```
+
