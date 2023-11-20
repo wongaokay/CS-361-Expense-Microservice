@@ -8,7 +8,7 @@ This microservice uses ZeroMQ for the communication pipeline. You need to instal
 category_dict = {'Groceries': 195, 'Rent': 1200}
 ```
 
-## Both Requesting and Receiving data in a single function
+## Requesting and Receiving data in a single function
 This function is an example of requesting and receiving data from the microservice. In the main program, another function will prompt the user what category they want to update (cat_to_update) and how much $ they want to subtract from the category (amount_to_subtract). For example, If the user wants to subtract $100 from Rent. Then the main program will call update_expense("Rent", 100). The microservice calculates and returns the updated expense, and the rest of the update_expense function updates the category in the dictionary.
 
 ```python
@@ -45,6 +45,8 @@ update_expense("Rent", 100)
 
 ## Further explanations
 ### How to programmatically Request data from the update_expense microservice
+When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data, which is a dictionary containing the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract).
+
 example call:
 ```python
     import zmq
@@ -64,6 +66,8 @@ example call:
 ```
 
 ### How to programmatically Receive data from the update_expense microservice
+To receive data from the microservice, the main program receives the updated expense as a string. This can be converted into an integer and used to update the category in category_dict. Note, that the microservice isn't set up to have separate functions for requesting and receiving data. The update_expense function listed above is what I'd recommend using.
+
 ```python
     ... continuation of request ...
 
