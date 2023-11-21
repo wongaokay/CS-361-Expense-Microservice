@@ -6,7 +6,7 @@ socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
 
 while True:
-    # Receives request from client
+    # Receive request from client
     received_request = socket.recv().decode('utf-8')
     print(received_request)
 
