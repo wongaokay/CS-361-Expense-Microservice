@@ -12,7 +12,7 @@ while True:
 
     time.sleep(.5)
 
-    # Requests user data from client {"current_expense": ?, "amount_to_subtract: ?"}
+    # Request user data from client {"current_expense": ?, "amount_to_subtract: ?"}
     print("Requesting data from client")
     socket.send_string("REQUEST_DATA")
     data = socket.recv_json()
