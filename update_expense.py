@@ -27,5 +27,6 @@ while True:
 
     time.sleep(.5)
 
+    # Send back updated expense
     print(f"Updated expense: ${updated_expense}")
     socket.send_string(str(updated_expense))
