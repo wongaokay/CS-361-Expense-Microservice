@@ -20,7 +20,7 @@ while True:
     current_expense = data["current_expense"]
     amount_to_subtract = data["amount_to_subtract"]
 
-    # Calculate Updated Amount
+    # Calculate updated expense
     updated_expense = current_expense - amount_to_subtract
     # Prevent negative expenses
     if updated_expense < 0:

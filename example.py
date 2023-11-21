@@ -1,7 +1,7 @@
 import zmq
 
 def update_expense(cat_to_update, amount_to_subtract):
-    """Both request and receives microservice"""
+    """Updates category dictionary given cat_to_update (str) and amount_to_subtract (int) using microservice"""
     context = zmq.Context()
     socket = context.socket(zmq.REQ)
     socket.connect("tcp://localhost:5555")
@@ -10,7 +10,7 @@ def update_expense(cat_to_update, amount_to_subtract):
     # Assign current_expense to variable given cat_to_update
     current_expense = category_dict[cat_to_update]
 
-    socket.send_string("User requesting to update category")
+    socket.send_string(f"User requesting to update {cat_to_update}")
     if socket.recv_string() == "REQUEST_DATA":
         data = {"current_expense": current_expense, "amount_to_subtract": amount_to_subtract}
         socket.send_json(data)
@@ -32,5 +32,5 @@ category_dict = {
 
 
 if __name__ == "__main__":
-    for request in range(1):
-        update_expense("Rent", 50)
+    for request in range(2):
+        update_expense("Groceries", 100)
