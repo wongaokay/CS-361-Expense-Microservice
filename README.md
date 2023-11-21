@@ -19,7 +19,6 @@ def update_expense(cat_to_update, amount_to_subtract):
     socket = context.socket(zmq.REQ)
     socket.connect("tcp://localhost:5555")
 
-    # Assign current_expense to variable given cat_to_update
     current_expense = category_dict[cat_to_update]
 
     # Request Microservice
