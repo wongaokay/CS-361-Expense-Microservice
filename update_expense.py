@@ -22,7 +22,6 @@ while True:
 
     # Calculate updated expense
     updated_expense = current_expense - amount_to_subtract
-    # Prevent negative expenses
     if updated_expense < 0:
         updated_expense = 0
 
