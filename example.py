@@ -1,5 +1,6 @@
 import zmq
 
+
 def update_expense(cat_to_update, amount_to_subtract):
     """Updates category dictionary given cat_to_update (str) and amount_to_subtract (int) using microservice"""
     context = zmq.Context()
