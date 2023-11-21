@@ -23,7 +23,7 @@ def update_expense(cat_to_update, amount_to_subtract):
     current_expense = category_dict[cat_to_update]
 
     # Request Microservice
-    socket.send_string("User requesting to update category")
+    socket.send_string(f"User requesting to update {cat_to_update}")
     if socket.recv_string() == "REQUEST_DATA":
         data = {"current_expense": current_expense, "amount_to_subtract": amount_to_subtract}
         socket.send_json(data)
@@ -59,7 +59,7 @@ example call:
     current_expense = category_dict["Groceries"]
     amount_to_subtract = 50
 
-    socket.send_string(f"User requesting to update {cat_to_update}")
+    socket.send_string("User requesting to update category")
     if socket.recv_string() == "REQUEST_DATA":
         data = {"current_expense": current_expense, "amount_to_subtract": amount_to_subtract}
         socket.send_json(data)
