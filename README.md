@@ -77,7 +77,7 @@ To receive data from the microservice, the main program receives the updated exp
     # Now, update groceries category with the new value
     category_dict["Groceries"] = updated_expense
 ```
-## UML Diagram
+## UML Sequence Diagram
 ![image](https://github.com/wongaokay/CS-361-Expense-Microservice/assets/102646701/8a948ddc-beca-4501-9089-db000d277d85)
 
 
