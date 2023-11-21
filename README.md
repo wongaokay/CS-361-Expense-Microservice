@@ -1,7 +1,7 @@
 # CS-361-Expense-Microservice
 
 ## Note
-This microservice uses ZeroMQ for the communication pipeline. You need to install and import the python package `zmq`.
+This microservice uses ZeroMQ for the communication pipeline. You'll need to install and import the python package `zmq`.
 
 ## Example Dictionary
 ```python
@@ -19,11 +19,10 @@ def update_expense(cat_to_update, amount_to_subtract):
     socket = context.socket(zmq.REQ)
     socket.connect("tcp://localhost:5555")
 
-    # Request Microservice
-    # Assign current_expense to variable given cat_to_update
     current_expense = category_dict[cat_to_update]
 
-    socket.send_string("User requesting to update category")
+    # Request Microservice
+    socket.send_string(f"User requesting to update {cat_to_update}")
     if socket.recv_string() == "REQUEST_DATA":
         data = {"current_expense": current_expense, "amount_to_subtract": amount_to_subtract}
         socket.send_json(data)
@@ -43,7 +42,7 @@ example call:
 update_expense("Rent", 100)
 ```
 
-## Further explanations
+## Further explanation
 ### How to programmatically Request data from the update_expense microservice
 When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data, which is a dictionary containing the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract).
 
