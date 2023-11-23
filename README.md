@@ -1,7 +1,7 @@
 # CS-361-Expense-Microservice
 
 ## Note
-This microservice uses ZeroMQ for the communication pipeline. You'll need to install and import the python package `zmq`.
+This microservice uses ZeroMQ for the communication pipeline. You'll need to install and import the Python package `zmq`.
 
 ## Example Dictionary
 ```python
