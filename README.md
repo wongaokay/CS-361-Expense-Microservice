@@ -44,7 +44,7 @@ update_expense("Rent", 100)
 
 ## Further explanation
 ### How to programmatically Request data from the update_expense microservice
-When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data from the main program. The main program will listen for the message "REQUEST_DATA", at that point it will send back the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract) as JSON. The main program could either prompt the before or after receiving the REQUEST_DATA string. It's up to you, in the function above, I have the current_expense and amount_to_subtact be function arguments, so in that example, the user data would've had to been prompted beforehand.
+When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data from the main program. The main program will listen for the message "REQUEST_DATA", at that point it will send back the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract) as JSON. The main program could either prompt the user before or after receiving the REQUEST_DATA string. In the function above, I have the current_expense and amount_to_subtact be function arguments, so in that example, the user data would've had to been prompted beforehand.
 
 example call:
 ```python
