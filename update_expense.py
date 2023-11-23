@@ -5,6 +5,7 @@ context = zmq.Context()
 socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
 
+print("Update Expense Microservice")
 while True:
     # Receive request from client
     received_request = socket.recv().decode('utf-8')
