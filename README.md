@@ -9,7 +9,7 @@ category_dict = {'Groceries': 195, 'Rent': 1200}
 ```
 
 ## Requesting and Receiving data in a single function (recommended)
-This function is an example of requesting and receiving data from the microservice. Ideally, in the main program, another function will prompt the user what category they want to update (cat_to_update) and how much $ they want to subtract from the category (amount_to_subtract). For example, If the user wants to subtract $100 from Rent. Then the main program will call update_expense("Rent", 100). The microservice calculates and returns the updated expense, and the rest of the update_expense function updates the Rent category in the dictionary.
+This function is an example of both requesting and receiving data from the microservice. Ideally, in the main program, another function will prompt the user what category they want to update (cat_to_update) and how much $ they want to subtract from the category (amount_to_subtract). For example, If the user wants to subtract $100 from Rent. Then the main program will call update_expense("Rent", 100). The microservice calculates and returns the updated expense, and the rest of the update_expense function updates the Rent category in the dictionary.
 
 ```python
 import zmq
@@ -44,7 +44,7 @@ update_expense("Rent", 100)
 
 ## Further explanation
 ### How to programmatically Request data from the update_expense microservice
-When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data, which is a dictionary containing the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract).
+When requesting data from the microservice. First, send a string through the socket, such as "User requesting to update category." This will prompt the microservice to request the user data from the main program. The main program will listen for the message "REQUEST_DATA", at that point it will send back the category's current expense (current_expense) and the amount the user wants to subtract (amount_to_subtract) as JSON. The main program could either prompt the before or after receiving the REQUEST_DATA string. It's up to you, in the function above, I have the current_expense and amount_to_subtact be function arguments, so in that example, the user data would've had to been prompted beforehand.
 
 example call:
 ```python
@@ -65,7 +65,7 @@ example call:
 ```
 
 ### How to programmatically Receive data from the update_expense microservice
-To receive data from the microservice, the main program receives the updated expense as a string. This can be converted into an integer and used to update the category in category_dict. Note, that the microservice isn't set up to have separate functions for requesting and receiving data. The update_expense function listed above is what I'd recommend using.
+To receive data from the microservice, the main program should wait to receive the updated expense as a string after sending the current_expense and amount_to_subtact to the microservice. The update_expense can then be converted into an integer and used to update the category in category_dict. Note, that because of the socket, the microservice isn't set up to have separate functions for requesting and receiving data. 
 
 ```python
     ... continuation of request ...
